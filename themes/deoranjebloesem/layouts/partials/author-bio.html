@@ -1,0 +1,29 @@
+{{ if eq .Site.Params.owner.avatar "http://" }}
+<img src="{{ .Site.Params.owner.avatar }}" class="bio-photo" alt="{{ .Site.Params.owner.name }} bio photo"></a>
+{{ else if eq .Site.Params.owner.avatar "https://" }}
+<img src="{{ .Site.Params.owner.avatar }}" class="bio-photo" alt="{{ .Site.Params.owner.name }} bio photo"></a>
+{{ else }}
+<img src="{{ .Site.BaseURL }}/images/{{ .Site.Params.owner.avatar }}" class="bio-photo" alt="{{ .Site.Params.owner.name }} bio photo"></a>
+{{ end }}
+<h3>{{ .Site.Params.owner.name }}</h3>
+<p>{{ .Site.Params.owner.bio }}</p>
+<h5> Locaties </h5>
+<p><b>Davie MultiPurpose Center</b>
+    <br/> 3801 South Pine Island Rd Davie, FL 33328</p>
+<br/>
+<p>Sjomannskirken
+    <br/> 2950 South Flamingo Rd Davie, FL 33330</p>
+<h5>Correspondentie-adres </h5>
+<p>
+    1588 Elm Grove Rd Weston, FL 33327
+</p>
+
+<h5>Schooltijden</h5>
+<p>
+    <b>MultiPurpose Center</b> - Zaterdagochtend van 9.30 tot 12.30 uur
+</p>
+<br/>
+<p>
+    <b>Sjomannskirken</b> - Zaterdagochtend van 10.00 tot 1.00 uur
+</p>
+<a href="{{ .Site.BaseURL }}/aanmelden/" class="fa fa-envelope fa-lg">Vragen?</a>

@@ -1,0 +1,14 @@
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        {{ range $link := .Site.Params.links }}
+				<li><a href="{{ if $link.external }}{{ $link.url }}{{ else }}{{ .Site.url }}{{ $link.url }}{{ end }}" {{ if $link.external }} target="_blank"{{ end }}>{{ $link.title }}</a></li>
+		        {{ end }}
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->

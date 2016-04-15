@@ -1,0 +1,73 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+   {{ partial "head.html" . }}
+</head>
+
+<body class="post">
+
+{{ partial "browser-upgrade.html" . }} 
+{{ partial "navigation.html" . }} 
+
+{{ if .Params.image.feature }}
+  <div class="image-wrap">
+  <img src="{{ .Site.BaseURL }}/images/{{ .Params.image.feature }}" alt="{{ .Title }} feature image">
+                                                                                                                    
+    {{ if .Params.Image.credit }}
+    <span class="image-credit">Photo Credit: <a href="{{ .Params.image.credit }}">{{ .Params.image.credit }}</a></span> 
+    {{ end }}
+  </div><!-- /.image-wrap -->
+ {{ end }}
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    {{ partial "author-bio.html" . }}
+  </div>
+  <article>
+    <div class="headline-wrap">
+     
+        <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      {{ .Content }}
+      <hr />
+      <footer role="contentinfo">
+        <div class="article-author-bottom">
+         {{ partial "author-bio.html" . }}
+        </div>
+        <p class="byline"><strong>{{ .Title }}</strong> was published on <time datetime="{{ .Date  }}">{{ .Date }}</time>
+            {{ if .Lastmod }} and last modified on <time datetime="{{ .Lastmod }}">{{ .Lastmod }}</time>{{ end }} by <a href="{{ .Site.BaseURL }}/school" title="About {{ .Site.Params.owner.name }}">{{ .Site.Params.owner.name }}</a>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  <div class="related-articles">
+  <h4>Misschien bent u ook geinteresseerd in <small class="pull-right">(<a href="{{ .Site.BaseURL }}/nieuws/">Bekijk all het nieuws</a>)</small></h4>
+    <ul>
+    {{ $page_link := .Permalink }}
+    {{ $tags := .Params.tags }}
+    {{ range .Site.Pages }}
+    {{ $page := . }}
+    {{ $has_common_tags := intersect $tags .Params.tags | len | lt 0 }}
+    {{ if and $has_common_tags (ne $page_link $page.Permalink) }}
+      <li><a href="{{ $page.Permalink }}" title="{{ $page.Title }}">{{ $page.Title }}</a></li>
+    {{ end }}
+    {{ end }}
+    </ul>
+    <hr />
+  </div><!-- /.related-articles -->
+  <footer>
+    {{ partial "footer.html" . }}
+  </footer>
+</div><!-- /.footer-wrap -->
+
+    {{ partial "scripts.html" . }}        
+
+</body>
+</html>

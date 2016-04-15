@@ -1,0 +1,53 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    {{ partial "head.html" . }}
+</head>
+
+<body class="home">
+{{ partial "browser-upgrade.html" . }} 
+{{ partial "navigation.html" . }} 
+{{ printf "%#v" . }}
+{{ if .Params.image.feature }}
+    YES
+    <div class="image-wrap">
+        <img src="{{ .Site.BaseURL }}/images/{{ .Params.image.feature }}" alt="{{ .Title }} feature image"> 
+        {{ if .Params.Image.credit }}
+        <span class="image-credit">Photo Credit: <a href="{{ .Params.image.credit }}">{{ .Params.image.credit }}</a></span> 
+        {{ end }}
+    </div>
+    <!-- /.image-wrap -->
+    {{ end }}
+
+    <div class="article-author-side">
+        {{ partial "author-bio.html" . }}
+    </div>
+
+    <div id="index">
+        <h3><a href="{{ .Site.BaseURL }}/nieuws/">Laatste Nieuws</a></h3> {{ range .Data.Pages }}
+        <article>
+
+            <h2><a href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Title }}</a></h2> {{ .Summary }}
+        </article>
+        {{ end }}
+    </div>
+    <!-- /#index -->
+
+    <div class="footer-wrap">
+        <footer>
+            {{ partial "footer.html" . }}
+        </footer>
+    </div>
+    <!-- /.footer-wrap -->
+
+    {{ partial "scripts.html" . }}
+
+</body>
+
+</html>
